@@ -10,10 +10,6 @@ use clap::Parser;
 use url::Url;
 use log;
 
-//extern crate clap;
-//extern crate csv;
-//extern crate env_logger;
-
 sol!(
     #[allow(missing_docs)]
     #[derive(Debug)]
