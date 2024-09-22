@@ -84,7 +84,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let rpc_url = Url::parse(&rpc).map_err(|e| format!("Failed to parse RPC URL: {}", e))?;
     let provider = ProviderBuilder::new().on_http(rpc_url);
     
-    // ExecutionSuccess (bytes32 txHash, uint256 payment)
+    // keccak256("ExecutionSuccess(bytes32,uint256)")
     let execution_event = b256!("442e715f626346e8c54381002da614f62bee8d27386535b2521ec8540898556e");
 
     // Parser args or use defaults
@@ -112,7 +112,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let safe_decoder = SafeDecoder::new(safe_address, &local_provider);
 
-    println!("block_number,tx_hash,tx_hash,data_hash,nonce,threshold,calldata,signers");
+    println!("block_number,tx_hash,safe_tx_hash,safe_data_hash,nonce,threshold,calldata,signers");
 
     for from_block in (start_block..=end_block).step_by(chunk_size as usize) {
         // Calculate to_block for this chunk, ensuring it doesn't exceed the end_block
