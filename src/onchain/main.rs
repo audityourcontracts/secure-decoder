@@ -42,7 +42,7 @@ sol!(
 );
 
 // This is the decode contract in bytes. You need to build using forge build then navigate to the build `out` directory, 
-// find the SafeDedoder.sol json and copy out the deployed_bytecode and copy here.
+// find the SafeDedoder.sol json and copy out the bytecode (not the deployed bytecode) and copy here.
 sol! {
     #[allow(missing_docs)]
     // Needs to bytecode not deployed_bytecode.
