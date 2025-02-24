@@ -5,6 +5,17 @@ forge/ has the custom contracts, tests and when you build it you get the bytecod
 src/onchain requires `ETH_RPC` to be set so it can walk through all WazirX wallet transactions. 
 src/offchain works on data extracted from bigquery and allowed me to cover every Safe wallet transaction (ever).
 
+For example to start decoding Bybit transactions;
+```
+cargo run --bin onchain -- --safe-wallet-address 0x1Db92e2EeBC8E0c075a02BeA49a2935BcD2dFCF4 --start-block 11820678 --end-block 21895239
+```
+
+To start decoding WazirX transactions;
+```
+cargo run --bin onchain -- --safe-wallet-address 0x27fD43BABfbe83a81d14665b1a6fB8030A60C9b4 --start-block 16132578 --end-block 20331566
+```
+
+
 The BigQuery looks like this;
 ```
 WITH matched_transactions AS (
