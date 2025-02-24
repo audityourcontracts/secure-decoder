@@ -112,7 +112,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let safe_decoder = SafeDecoder::new(safe_address, &local_provider);
 
-    println!("block_number,tx_hash,safe_tx_hash,safe_data_hash,nonce,threshold,calldata,signers");
+    println!("block_number,tx_hash,safe_tx_hash,safe_data_hash,nonce,threshold,calldata,to,value,signers");
 
     for from_block in (start_block..=end_block).step_by(chunk_size as usize) {
         // Calculate to_block for this chunk, ensuring it doesn't exceed the end_block
@@ -269,7 +269,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 .unwrap_or_else(|| "Unknown".to_string());
 
                             println!(
-                                "{},{},{},{},{},{},{},\"[{}]\"",
+                                "{},{},{},{},{},{},{},{},{},\"[{}]\"",
                                 block_number,
                                 transaction_hash,
                                 tx_hash,
@@ -277,6 +277,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 nonce._0,
                                 threshhold._0,
                                 call_data,
+                                decoded.to,
+                                decoded.value,
                                 signer_list
                             );
                         },
